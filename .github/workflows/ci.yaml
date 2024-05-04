@@ -3,31 +3,11 @@ name: Main Workflow Using Reusable Sum Workflow
 on: [push]
 
 jobs:
-  checkout:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-  tree:
-    runs-on: ubuntu-latest
-    steps:
-      - name: List Files
-        shell: bash
-        run: |
-          tree -a
   invoke_reusable:
-      runs-on: ubuntu-latest
-      steps:
-          - uses: tony92151/my-reuse-github-action/.github/workflows/reuse-test.yaml@main
-            with:
-              value_1: 11
-              value_2: 20
-
-  set_output:
-      runs-on: ubuntu-latest
-      steps:
-        - id: set_output
-          run: echo "::set-output name=computed_sum::${{ steps.invoke_reusable.outputs.sum }}"
+    uses: tony92151/my-reuse-github-action/.github/workflows/reuse-test.yaml@main
+    with:
+      value_1: 10
+      value_2: 20
 
   display_sum:
     needs: invoke_reusable
