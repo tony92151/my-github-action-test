@@ -3,6 +3,18 @@ name: Main Workflow Using Reusable Sum Workflow
 on: [push]
 
 jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+  tree:
+    runs-on: ubuntu-latest
+    shell: bash
+    steps:
+      - name: List Files
+        run: |
+          tree -a
   invoke_reusable:
     uses: owner/repo/.github/workflows/reusable-workflow.yml@main
     with:
