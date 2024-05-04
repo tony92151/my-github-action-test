@@ -6,7 +6,7 @@ jobs:
   invoke_reusable:
     uses: owner/repo/.github/workflows/reusable-sum-workflow.yml@main
     with:
-      value_1: 10
+      value_1: 11
       value_2: 20
     outputs:
       computed_sum: ${{ steps.invoke_reusable.outputs.sum }}
