@@ -15,19 +15,19 @@ jobs:
         shell: bash
         run: |
           tree -a
-          
   invoke_reusable:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Invoke reusable workflow
-        id: invoke_reusable
-        uses: tony92151/my-reuse-github-action/.github/workflows/reuse-test.yaml@main
-      - name: Set output
-        id: set_output
-        run: echo "::set-output name=computed_sum::${{ steps.invoke_reusable.outputs.sum }}"
-    outputs:
-      computed_sum: ${{ steps.set_output.outputs.computed_sum }}
-      
+      runs-on: ubuntu-latest
+      steps:
+          - uses: tony92151/my-reuse-github-action/.github/workflows/reuse-test.yaml@main
+            with:
+              value_1: 11
+              value_2: 20
+
+  set_output:
+      runs-on: ubuntu-latest
+      steps:
+        - id: set_output
+          run: echo "::set-output name=computed_sum::${{ steps.invoke_reusable.outputs.sum }}"
 
   display_sum:
     needs: invoke_reusable
