@@ -10,9 +10,9 @@ jobs:
         uses: actions/checkout@v2
   tree:
     runs-on: ubuntu-latest
-    shell: bash
     steps:
       - name: List Files
+        shell: bash
         run: |
           tree -a
   invoke_reusable:
