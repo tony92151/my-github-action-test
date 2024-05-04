@@ -18,7 +18,7 @@ jobs:
         run: echo "sum=${sum}" >> $GITHUB_OUTPUT
 
   display_sum:
-    needs: invoke_reusable
+    needs: [invoke_reusable, set_sum]
     runs-on: ubuntu-latest${{ github.run_id }}
     env:
       sum: ${{ needs.invoke_reusable.outputs.sum }}
