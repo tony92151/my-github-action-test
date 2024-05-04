@@ -4,19 +4,21 @@ on: [push]
 
 jobs:
   invoke_reusable:
-    uses: tony92151/my-reuse-github-action/.github/workflows/reuse-test.yaml@main
-    with:
-      value_1: 10
-      value_2: 20
-    
+    runs-on: ubuntu-latest${{ github.run_id }}
+    steps:
+      - name: Invoke Reusable Sum Workflow
+        uses: tony92151/my-reuse-github-action/.github/workflows/reuse-test.yaml@main
+        with:
+          value_1: 10
+          value_2: 20
+      - name: Set sum
+        run: echo "sum=${sum}" >> $GITHUB_OUTPUT
 
   display_sum:
     needs: invoke_reusable
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest${{ github.run_id }}
     env:
-      sum: ${{ needs.invoke_reusable.outputs.computed_sum }}
+      sum: ${{ needs.invoke_reusable.outputs.sum }}
     steps:
-      - name: Set sum
-        run: echo "sum=${sum}" >> $GITHUB_OUTPUT
       - name: Display Sum
         run: echo "The sum is $sum"
