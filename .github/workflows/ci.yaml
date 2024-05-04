@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   invoke_reusable:
-    uses: .github/workflows/reusable-sum-workflow.yml@main
+    uses: ./.github/workflows/reusable-sum-workflow.yml@main
     with:
       value_1: 10
       value_2: 20
