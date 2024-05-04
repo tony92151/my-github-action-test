@@ -10,7 +10,7 @@ jobs:
       value_2: 20
   set_sum:
     needs: invoke_reusable
-    runs-on: ubuntu-latest${{ github.run_id }}
+    runs-on: ubuntu-latest
     env:
       sum: ${{ needs.invoke_reusable.outputs.sum }}
     steps:
@@ -19,7 +19,7 @@ jobs:
 
   display_sum:
     needs: [invoke_reusable, set_sum]
-    runs-on: ubuntu-latest${{ github.run_id }}
+    runs-on: ubuntu-latest
     env:
       sum: ${{ needs.invoke_reusable.outputs.sum }}
     steps:
