@@ -16,7 +16,7 @@ jobs:
         run: |
           tree -a
   invoke_reusable:
-    uses: "owner/repo/.github/workflows/reusable-workflow.yml@main"
+    uses: tony92151/my-reuse-github-action/reuse-test@main
     with:
       value_1: 11
       value_2: 20
