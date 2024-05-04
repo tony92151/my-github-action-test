@@ -8,10 +8,15 @@ jobs:
     with:
       value_1: 10
       value_2: 20
+    
 
   display_sum:
     needs: invoke_reusable
     runs-on: ubuntu-latest
+    env:
+      sum: ${{ needs.invoke_reusable.outputs.computed_sum }}
     steps:
+      - name: Set sum
+        run: echo "sum=${sum}" >> $GITHUB_OUTPUT
       - name: Display Sum
-        run: echo "The sum is ${{ needs.invoke_reusable.outputs.computed_sum }}"
+        run: echo "The sum is $sum"
